@@ -158,6 +158,10 @@ def SetMatProperty(matName, value, targetId, targetDoc):
 
     # Activate channel
     mat[MTL_KEYWORDS_USE[targetId]] = True
+    if targetId == c4d.MATERIAL_SPECULAR_WIDTH:
+        if value == 0.0:
+            mat[MTL_KEYWORDS_USE[targetId]] = False
+            DebugPrint('Turning Spec off cuz 0 width')
 
     # Update material
     mat.Update(True, True)
@@ -185,7 +189,11 @@ def InsertTexture(fBase, fName, matName, targetId, targetDoc):
     if tShader == None:
         DebugPrint('     ERROR: COULD NOT ALLOCATE BITMAP SHADER!')
         return
-    tShader[c4d.BITMAPSHADER_FILENAME] = fName
+
+    fSlash = '/'
+    fPath = str(fBase) + str(fSlash) + str(fName)
+
+    tShader[c4d.BITMAPSHADER_FILENAME] = fPath #
     
     # Add undo
     targetDoc.AddUndo(c4d.UNDOTYPE_CHANGE, mat)
