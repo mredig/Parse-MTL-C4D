@@ -5,7 +5,7 @@ Description-US:Run this script after importing an .obj file. It will parse the .
 Description-DE:Starten Sie dieses Skript nach dem Import einer OBJ-Datei. Es wird eine MTL-Datei einlesen und die Materialien bauen.
 
 
-ImportMTL 1.1.2
+ImportMTL 1.1.3
 ===============
 2013 by www.c4d-jack.de
 
@@ -41,6 +41,11 @@ Changelog
 
 1.1.2
 - Bugfix: File paths with special character didn't work
+
+1.1.3
+- Linked to absolute file paths. May need to make a toggle.
+- Turn off specularity channel if the value is 0.
+
 """
 
 import os
